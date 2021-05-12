@@ -14,17 +14,18 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-function BlogsList({ blogs, blogCardClickHandler }) {
+function BlogsList({ blogs, toggleSave }) {
   const classes = useStyles()
   const [searchText, setSearchText] = useState('')
 
   function createBlogCards() {
+    console.log(blogs)
     const searchResults = blogs.filter(blog => (
       blog.title.toLowerCase().includes(searchText.toLowerCase()) ||
-      blog.author.toLowerCase().includes(searchText.toLowerCase)
+      blog.author.toLowerCase().includes(searchText.toLowerCase())
     ))
     return searchResults.map(blogObject => (
-      <BlogCard key={blogObject.id} blogObject={blogObject} clickHandler={blogCardClickHandler} />
+      <BlogCard key={blogObject.id} blogObject={blogObject} toggleSave={toggleSave} />
     ))
   }
   console.log(blogs)

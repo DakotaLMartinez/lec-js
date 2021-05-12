@@ -25,10 +25,11 @@ const useStyles = makeStyles(() => ({
 })
 )
 
-function BlogCard({ blogObject, saveBlog, history }) {
+function BlogCard({ blogObject, toggleSave, history }) {
   const classes = useStyles()
-  function localClickHandler() {
-    history.push("/blogs/saved")
+  async function localClickHandler() {
+    const saved = await toggleSave(blogObject)
+    if (saved.favorite) { history.push("/blogs/saved") }
   }
   return (
     <Grid item xs={12} sm={6} md={4} lg={3}>
@@ -49,8 +50,8 @@ function BlogCard({ blogObject, saveBlog, history }) {
         </CardContent>
         <CardActions className={classes.buttonsArea}>
           <Button size="small" color="primary" onClick={localClickHandler}>
-            Save
-        </Button>
+            {blogObject.favorite ? 'Unsave' : 'Save'}
+          </Button>
           <Button className={classes.button} component="a" href={blogObject.url} target="_blank" size="small" color="primary">
             Visit
         </Button>
