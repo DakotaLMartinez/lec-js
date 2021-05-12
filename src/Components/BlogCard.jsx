@@ -31,7 +31,7 @@ function BlogCard({ blogObject, saveBlog, history }) {
     history.push("/blogs/saved")
   }
   return (
-    <Grid item xs={3}>
+    <Grid item xs={12} sm={6} md={4} lg={3}>
       <Card className={classes.card}>
         <CardActionArea >
           <CardMedia
